@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Login from'./Register/Login/Page'
 
 export default function Home() {
-  return (
-<>
 
-</>
+
+  return (
+ <Login/> 
   );
 }
