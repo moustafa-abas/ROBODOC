@@ -67,7 +67,10 @@ const Page = () => {
             ))}
           </div>
           <h2 className="mt-6 text-center font-semibold text-[#54585B]">
-            لم يصلك الرمز؟ <span className="text-[#51C143]">00:59</span>
+             لم يصلك الرمز؟  
+            {/* <span className="text-[#51C143]">00:59</span> */}
+            <span className="text-[#51C143] cursor-pointer" >إرسال مرة أخري </span>
+
           </h2>
 
           <button
