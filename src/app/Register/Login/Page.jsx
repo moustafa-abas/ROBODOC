@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
-import login_frame from "../../../../public/login frame.webp";
-import logo from "../../../../public/logo.webp";
 import { useForm } from "react-hook-form";
+import Register_img from "@/component/Register_img";
 const Page = () => {
   const {
     register,
@@ -17,14 +16,15 @@ const Page = () => {
   return (
     <div className=" px-2 sm:px-0 h-screen sm:flex items-center justify-between  ">
       <aside className=" hidden sm:block sm:w-2/5  h-full">
-        <Image
-          src={login_frame}
-          alt="login frame"
-          className="w-full  h-full "
-        />
+        <Register_img />
       </aside>
       <main className="w-full sm:w-2/5 mx-auto ">
-        <Image src={logo} alt="login frame" className="mx-auto sm:mx-0" 
+        <Image
+          src="/logo.webp"
+          alt="login frame"
+          className="mx-auto sm:mx-0"
+          width={200}
+          height={1}
         />
         <hgroup className="mt-2 text-center sm:text-right">
           <h1 className="font-semibold text-xl lg:text-3xl">أدخل رقم الجوال</h1>
