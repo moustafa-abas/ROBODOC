@@ -8,6 +8,7 @@ const Register_img = () => {
           className="w-full  h-full "
           width={900}
           height={1000}
+          data-aos="fade-left" data-aos-duration='2000'
         />
   )
 }
