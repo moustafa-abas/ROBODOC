@@ -1,4 +1,4 @@
-import Login from'./Register/Login/page.jsx'
+import Login from'./register/login/page.jsx'
 
 export default function Home() {
 
