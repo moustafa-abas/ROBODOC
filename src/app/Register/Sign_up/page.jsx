@@ -1,8 +1,9 @@
 "use client";
-import Image from "next/image";
 import { useForm } from "react-hook-form";
 import Register_img from "@/component/Register_img";
 import Link from "next/link";
+import Button from "@/component/Button";
+import Head from "@/component/Head";
 const Page = () => {
   const {
     register,
@@ -20,22 +21,13 @@ const Page = () => {
         <Register_img />
       </aside>
       <main className="w-full sm:w-2/5 mx-auto ">
-        <Image
-          src="/logo.webp"
-          alt="login frame"
-          className="mx-auto sm:mx-0"
-          width={200}
-          height={1}
-        />
-        <hgroup className=" text-center sm:text-right">
-          <h1 className="font-semibold text-xl lg:text-3xl">
-            {" "}
-            إنشاء حساب جديد{" "}
-          </h1>
-          <p className="text-lg lg:text-xl  text-[#54585bdd] mt-2">
-            خلّيك أقرب لخدماتنا في خطوات بسيطة
-          </p>
-        </hgroup>
+
+
+<Head data={{
+  h:'إنشاء حساب جديد',
+  p:'نحتاج بعض المعلومات الأساسية لإنشاء حسابك الطبي.'
+}}/>
+
         <form
           className="  mt-6  mx-1 lg:mx-6 "
           onSubmit={handleSubmit(onSubmit)}
@@ -136,13 +128,8 @@ const Page = () => {
               </p>
             ) : null}
           </>
+<Button role='تسجيل الدخول' />
 
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white mt-6 h-12 rounded-xl cursor-pointer"
-          >
-            تسجيل الدخول
-          </button>
           <p className="text-center mt-4   text-[#54585B] font-semibold text-lg ">
             عندك حساب بالفعل؟
             <Link href="/Register/Login" className="text-[#51C143] ">
