@@ -1,10 +1,9 @@
 import React from "react";
 
 const Alert = (data) => {
-console.log(data?.errors);
 return (
 <>
-    <div
+    <main
     className={`bg-red-200 px-3 py-2 mx-2 mt-2 rounded-md text-l flex   items-center   max-w-lg   `}
     data-aos="zoom -in"
     >
@@ -16,7 +15,7 @@ return (
     </svg>
 
     <p className="list-disc ms-2">{data?.errors}</p>
-    </div>
+    </main>
 </>
 );
 };

@@ -33,33 +33,37 @@ const Otp = () => {
       />
 
       <form
-        className=" mt-6   mx-1 lg:mx-6 "
+        className=" mt-6   "
         onSubmit={handleSubmit(onSubmit)}
         name="verify_form"
         id="verify_form"
       >
-        <div className="flex justify-center gap-6">
-          {[0, 1, 2, 3].map((i) => (
-            <input
-              key={i}
-              maxLength={1}
-              inputMode="numeric"
-              autoFocus={i === 0}
-              className=" w-14 h-14 rounded-lg sm:w-18 sm:h-18  sm:rounded-2xl focus:outline-0   caret-gray-500  border-2 border-[#B0B2B3] text-center text-xl"
-              {...register(`code.${i}`, {
-                required: true,
-                pattern: /^[0-9]$/,
-                onChange: (e) => handleChange(e.target.value, i),
-              })}
-              onKeyDown={(e) => handleKeyDown(e, i)}
-            />
-          ))}
-        </div>
-        <h2 className="mt-6 text-center font-semibold text-[#54585B]">
-          لم يصلك الرمز؟
-          {/* <span className="text-[#51C143]">00:59</span> */}
-          <span className="text-[#51C143] cursor-pointer">إرسال مرة أخري </span>
-        </h2>
+        <main className="mx-1 lg:mx-6 ">
+          <div className="flex justify-center gap-6">
+            {[0, 1, 2, 3].map((i) => (
+              <input
+                key={i}
+                maxLength={1}
+                inputMode="numeric"
+                autoFocus={i === 0}
+                className=" w-14 h-14 rounded-lg sm:w-18 sm:h-18  sm:rounded-2xl focus:outline-0   caret-gray-500  border-2 border-[#B0B2B3] text-center text-xl"
+                {...register(`code.${i}`, {
+                  required: true,
+                  pattern: /^[0-9]$/,
+                  onChange: (e) => handleChange(e.target.value, i),
+                })}
+                onKeyDown={(e) => handleKeyDown(e, i)}
+              />
+            ))}
+          </div>
+          <h2 className="mt-6 text-center font-semibold text-[#54585B]">
+            لم يصلك الرمز؟
+            {/* <span className="text-[#51C143]">00:59</span> */}
+            <span className="text-[#51C143] cursor-pointer">
+              إرسال مرة أخري{" "}
+            </span>
+          </h2>
+        </main>
 
         <Button role="تأكيد" />
       </form>
