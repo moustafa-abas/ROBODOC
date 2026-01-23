@@ -45,7 +45,7 @@ const Otp = () => {
               maxLength={1}
               inputMode="numeric"
               autoFocus={i === 0}
-              className=" w-14 h-14 rounded-lg sm:w-20 sm:h-18  sm:rounded-2xl focus:outline-0   caret-gray-500  border-2 border-[#B0B2B3] text-center text-xl"
+              className=" w-14 h-14 rounded-lg sm:w-18 sm:h-18  sm:rounded-2xl focus:outline-0   caret-gray-500  border-2 border-[#B0B2B3] text-center text-xl"
               {...register(`code.${i}`, {
                 required: true,
                 pattern: /^[0-9]$/,

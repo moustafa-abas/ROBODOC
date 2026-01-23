@@ -2,6 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "./Button";
+import Alert from "./Alert";
 const Login_form = () => {
 const {
 register,
@@ -12,85 +13,104 @@ formState: { errors },
 const onSubmit = (data) => {
 console.log(data);
 };
+
 return (
-<form
+<>
+    <form
     className=" mt-6 sm:mt-12  mx-1 lg:mx-6 "
     onSubmit={handleSubmit(onSubmit)}
     name="login_form"
     id="login_form"
     autoComplete="login_form"
->
+    >
     <>
-    <label
+        <label
         htmlFor="phone"
         className="flex items-center gap-2 font-semibold"
-    >
+        >
         رقم الجوال
-        <span className="text-[#51C143]"> * </span>
-    </label>
-    <div className="border-2 border-[#E6E6E7]  mt-2 h-12 rounded-xl flex items-center gap-2 sm:gap-4 px-1 sm:px-2 ">
+        <span
+            className={`${errors?.phone ? "text-red-600" : "text-[#51C143]"} text-xl`}
+        >
+            {" "}
+            *{" "}
+        </span>
+        </label>
+        <div className="border-2 border-[#E6E6E7]  mt-2 h-12 rounded-xl flex items-center gap-2 sm:gap-4 px-1 sm:px-2 ">
         <input
-        id="phone"
-        type="tel"
-        name="phone"
-        placeholder="رقم الجوال"
-        className=" w-full placeholder:font-semibold text-left focus:outline-0 caret-gray-400"
-        maxLength={9}
-        autoComplete="phone"
-        {...register("phone", {
+            id="phone"
+            type="tel"
+            name="phone"
+            placeholder="رقم الجوال"
+            className=" w-full placeholder:font-semibold text-left focus:outline-0 caret-gray-400"
+            maxLength={9}
+            autoComplete="phone"
+            {...register("phone", {
             required: "رقم الجوال مطلوب",
             pattern: {
-            value: /^5\d{8}$/,
-            message: " يجب ان يبدا الجوال ب 5 ويتكون من 9 ارقام ",
+                value: /^5\d{8}$/,
+                message: " يجب ان يبدا الجوال ب 5 ويتكون من 9 ارقام ",
             },
-        })}
+            })}
         />
         <span className="text-xl ps-2 border-r-2 ">966+</span>
-    </div>
+        </div>
+        {errors?.phone?.message ? (
+        <Alert errors={errors?.phone?.message} />
+        ) : null}
     </>
     <>
-    <label
+        <label
         htmlFor="password"
         className="flex items-center gap-2 font-semibold mt-6"
-    >
+        >
         كلمة المرور
-        <span className="text-[#51C143]"> * </span>
-    </label>
-    <div className="border-2 border-[#E6E6E7]  mt-2 h-12 rounded-xl flex  px-2 ">
+        <span
+            className={`${errors?.password ? "text-red-600 " : "text-[#51C143]"} text-xl`}
+        >
+            {" "}
+            *{" "}
+        </span>
+        </label>
+        <div className="border-2 border-[#E6E6E7]  mt-2 h-12 rounded-xl flex  px-2 ">
         <input
-        type="password"
-        placeholder="ادخل كلمة المرور "
-        name="password"
-        id="password"
-        maxLength={16}
-        className=" w-full placeholder:font-semibold  focus:outline-0 caret-gray-400"
-        {...register("password", {
+            type="password"
+            placeholder="ادخل كلمة المرور "
+            name="password"
+            id="password"
+            maxLength={16}
+            className=" w-full placeholder:font-semibold  focus:outline-0 caret-gray-400"
+            {...register("password", {
             required: "كلمة المرور مطلوبة",
             minLength: {
-            value: 8,
-            message: "كلمة المرور لا تقل عن 8 حروف",
+                value: 8,
+                message: "كلمة المرور لا تقل عن 8 حروف",
             },
             pattern: {
-            value:
+                value:
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-            message: "لازم تحتوي على حرف كبير وصغير ورقم ورمز خاص",
+                message: "لازم تحتوي على حرف كبير وصغير ورقم ورمز خاص",
             },
-        })}
+            })}
         />
-    </div>
+        </div>
+        {errors?.password?.message ? (
+        <Alert errors={errors?.password?.message} />
+        ) : null}
     </>
     <div className="flex  items-center gap-2 mt-4 text-gray-400">
-    <input
+        <input
         name="remember"
         type="checkbox"
         className=" w-4 h-4 outline-0"
         {...register("remember")}
-    />
-    تذكرني
+        />
+        تذكرني
     </div>
 
     <Button role="تسجيل الدخول" />
-</form>
+    </form>
+</>
 );
 };
 

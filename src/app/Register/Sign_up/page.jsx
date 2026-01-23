@@ -1,144 +1,61 @@
 "use client";
-import { useForm } from "react-hook-form";
 import Register_img from "@/component/Register_img";
-import Link from "next/link";
-import Button from "@/component/Button";
+
 import Head from "@/component/Head";
+import { useState } from "react";
+import Sign_page1 from "@/component/Sign_page1";
+import Link from "next/link";
+import Verify_overlay from "@/component/Verify_overlay";
 const Page = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const [page, setPage] = useState(1);
+  const [overlay, setOverlay] = useState(false);
 
   return (
-    <div className=" px-2 sm:px-0 h-screen sm:flex items-center justify-between  ">
-      <aside className=" hidden sm:block sm:w-2/5  h-full">
-        <Register_img />
-      </aside>
-      <main className="w-full sm:w-2/5 mx-auto ">
+    <>
+      <div className="   flex items-center justify-between  min-h-screen relative ">
+        <aside className=" hidden sm:block w-2/5  sticky  top-0 bottom-0 h-screen  ">
+          <Register_img />
+        </aside>
+        <main className="w-full sm:w-3/5 lg:w-2/5 px-3 sm:px-6  mx-auto    "
+        data-aos="fade-right"
+      data-aos-duration="2000" >
+          <div className=" flex  gap-5 items-center  my-8">
+            {[1, 2, 3].map((i) => (
+              <p
+                key={i}
+                className={`${page >= i ? "bg-[#51C143]" : "bg-[#E6E6E7]"} w-1/3 h-1 rounded-full`}
+              ></p>
+            ))}
+            <p className="">{page}/3</p>
+          </div>
+          <Head
+            data={{
+              h: "إنشاء حساب جديد",
+              p: "نحتاج بعض المعلومات الأساسية لإنشاء حسابك الطبي.",
+            }}
+          />
+<div  
+  data-aos="zoom-in"
+      data-aos-delay="1000">
 
+          <Sign_page1   
+      />
 
-<Head data={{
-  h:'إنشاء حساب جديد',
-  p:'نحتاج بعض المعلومات الأساسية لإنشاء حسابك الطبي.'
-}}/>
+      <p className="text-center my-4   text-[#54585B] font-semibold text-lg ">
+        عندك حساب بالفعل؟
+        <Link href="/Register/Login" className="text-[#51C143] ms-1">
+          تسجيل الدخول
+        </Link>
+      </p>
+</div>
+        </main>
+      </div>
+      {
+overlay?
+      <Verify_overlay/>:null
+      }
 
-        <form
-          className="  mt-6  mx-1 lg:mx-6 "
-          onSubmit={handleSubmit(onSubmit)}
-          name="login_form"
-          id="login_form"
-          autoComplete="login_form"
-        >
-          <>
-            <label
-              htmlFor="name"
-              className="flex items-center gap-2 font-semibold mt-6"
-            >
-              الاسم
-              <span className="text-[#51C143]"> * </span>
-            </label>
-            <div className="border-2 border-[#E6E6E7]  mt-2 h-12 rounded-xl flex  px-2 ">
-              <input
-                type="text"
-                placeholder="ادخل الاسم  "
-                name="name"
-                id="name"
-                className=" w-full placeholder:font-semibold  focus:outline-0 caret-gray-400"
-                {...register("name", {
-                  required: "اسم المستخدم  مطلوب",
-                })}
-              />
-            </div>
-            {errors?.name ? (
-              <p className="mt-2  text-red-500">* {errors?.name?.message}</p>
-            ) : null}
-          </>
-          <>
-            <label
-              htmlFor="password"
-              className="flex items-center gap-2 font-semibold mt-6"
-            >
-              كلمة المرور
-              <span className="text-[#51C143]"> * </span>
-            </label>
-            <div className="border-2 border-[#E6E6E7]  mt-2 h-12 rounded-xl flex  px-2 ">
-              <input
-                type="password"
-                placeholder="ادخل كلمة المرور "
-                name="password"
-                id="password"
-                maxLength={16}
-                className=" w-full placeholder:font-semibold  focus:outline-0 caret-gray-400"
-                {...register("password", {
-                  required: "كلمة المرور مطلوبة",
-                  minLength: {
-                    value: 8,
-                    message: "كلمة المرور لازم تكون 8 حروف على الأقل",
-                  },
-                  pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message: "لازم تحتوي على حرف كبير وصغير ورقم ورمز خاص",
-                  },
-                })}
-              />
-            </div>
-            {errors?.password ? (
-              <p className="mt-2  text-red-500">
-                * {errors?.password?.message}
-              </p>
-            ) : null}
-          </>
-          <>
-            <label
-              htmlFor="password"
-              className="flex items-center gap-2 font-semibold mt-6"
-            >
-              تاكيد كلمة المرور
-              <span className="text-[#51C143]"> * </span>
-            </label>
-            <div className="border-2 border-[#E6E6E7]  mt-2 h-12 rounded-xl flex  px-2 ">
-              <input
-                type="password"
-                placeholder="ادخل كلمة المرور "
-                name="re_password"
-                id="re_password"
-                maxLength={16}
-                className=" w-full placeholder:font-semibold  focus:outline-0 caret-gray-400"
-                {...register("re_password", {
-                  required: " تأكيد كلمة المرور مطلوب ",
-                  minLength: {
-                    value: 8,
-                    message: "كلمة المرور لازم تكون 8 حروف على الأقل",
-                  },
-                  validate: (value) =>
-                    value === watch("password") || "كلمة المرور غير متطابقة",
-                })}
-              />
-            </div>
-            {errors?.re_password ? (
-              <p className="mt-2  text-red-500">
-                * {errors?.re_password?.message}
-              </p>
-            ) : null}
-          </>
-<Button role='تسجيل الدخول' />
-
-          <p className="text-center mt-4   text-[#54585B] font-semibold text-lg ">
-            عندك حساب بالفعل؟
-            <Link href="/Register/Login" className="text-[#51C143] ">
-              تسجيل الدخول
-            </Link>
-          </p>
-        </form>
-      </main>
-    </div>
+    </>
   );
 };
 
